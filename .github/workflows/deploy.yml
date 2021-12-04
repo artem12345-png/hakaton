@@ -44,10 +44,10 @@ jobs:
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.PRIVATEKEY }}
             source: "./.github/workflows"
-            target: "/hakaton"
+            target: "~/hakaton"
 
   deploy:
-    needs: build_docker_frontend
+    needs: [ build_docker_frontend, create_envs ]
     runs-on: ubuntu-latest
 
     steps:
