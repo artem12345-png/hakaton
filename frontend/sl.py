@@ -57,9 +57,8 @@ def main():
         elif ds == 'Выбрать':
             st.sidebar.title("Выберете район")
         elif state == 'Выбрать':
-            st.sidebar.write("Выберете состояние")
-        else:
-            st.sidebar.write("Выберете район и состояние")
+            st.sidebar.title("Выберете состояние")
+
     if add_selectbox == "Мониторинг загруженности городских дорог":
         ds = show_districts()
         dt = widgets()
@@ -68,9 +67,7 @@ def main():
         elif ds == 'Выбрать':
             st.sidebar.title("Выберете район")
         elif dt == 'Выбрать':
-            st.sidebar.write("Выберете время")
-        else:
-            st.sidebar.write("Выберете район и время")
+            st.sidebar.title("Выберете время")
 
     if add_selectbox == "Мониторинг загруженности межрайоных дорог":
         pass
