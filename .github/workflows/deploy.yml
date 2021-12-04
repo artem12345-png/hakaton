@@ -9,6 +9,7 @@ jobs:
   build_docker_frontend:
     runs-on: ubuntu-latest
     env:
+
       LOGIN: ${{ secrets.DOCKER_LOGIN }}
       NAME: ${{ secrets.DOCKER_NAME }}
     steps:
