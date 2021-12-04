@@ -42,6 +42,12 @@ def connect(ds=None, state=None, date=None):
 def show_all_cameras():
     pass
 
+primaryColor = "#c855f16"
+backgroundColor = "#091c35"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#ffffff"
+font = "sans serif"
+
 
 def main():
 
