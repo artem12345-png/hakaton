@@ -31,7 +31,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           script: |
-            cd ./stock-news/.github/workflows
+            cd ./.github/workflows
             sudo docker-compose down service_frontend
             sudo docker-compose pull
             sudo docker-compose up --build -d service_frontend
