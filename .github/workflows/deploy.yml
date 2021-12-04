@@ -47,7 +47,7 @@ jobs:
             target: "~/hakaton"
 
   deploy:
-    needs: build_docker_frontend
+    needs: [ build_docker_frontend, create_envs ]
     runs-on: ubuntu-latest
 
     steps:
