@@ -30,6 +30,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           script: |
+            ls -a
             cd ./hakaton/.github/workflows
             sudo docker-compose down service_frontend
             sudo docker-compose pull
