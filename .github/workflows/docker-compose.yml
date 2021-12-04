@@ -9,7 +9,7 @@ services:
     env_file:
       - sample.env
     ports:
-      - "8080:8501"
+      - "80:8501"
 
 
 

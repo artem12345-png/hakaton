@@ -6,16 +6,19 @@ import datetime
 
 def show_districts():
 
-    fh = st.sidebar.selectbox('Выберете район',
-        ('Выбрать',
-         "Залупинский район",
-         'Пупинский район'))
+    ds = st.sidebar.selectbox('Выберете район',
+                              ("Выбрать",
+                               "Залупинский район",
+                                'Пупинский район'))
+    return ds
 
 
 def widgets():
     from datetime import datetime
     current_time = datetime.now().time()
     x = st.sidebar.slider('Время', value=current_time)
+
+    return x
 
 
 def paint_map():
@@ -28,7 +31,12 @@ def paint_district_map():
 
 def show_state():
     state = st.sidebar.selectbox("Выберете состояние датчиков",
-                         ("Выбрать", "Рабочие", "Порой дают сбой", "Не работают"))
+                         ("Выбрать", "Рабочие", "Не корректно", "Не работают"))
+    return state
+
+
+def connect(ds, state):
+    pass
 
 
 def show_all_cameras():
@@ -42,9 +50,10 @@ def main():
         ("Выбрать", "Мониторинг оборудования", "Мониторинг загруженности городских дорог",
          "Мониторинг загруженности межрайоных дорог"))
     if add_selectbox == 'Мониторинг оборудования':
-        show_districts()
-        show_state()
-
+        ds = show_districts()
+        state = show_state()
+        if ds and state:
+            connect(ds=ds, state=state)
     if add_selectbox == "Мониторинг загруженности городских дорог":
         show_districts()
         widgets()
