@@ -22,7 +22,7 @@ jobs:
 
 
   deploy:
-    needs: [ build_docker_frontend,  create_envs ]
+    needs: build_docker_frontend
     runs-on: ubuntu-latest
 
     steps:
