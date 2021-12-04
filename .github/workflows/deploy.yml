@@ -43,7 +43,7 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.PRIVATEKEY }}
-            source: "./.github/workflows"
+            source: "./.github"
             target: "~/hakaton"
 
   deploy:
