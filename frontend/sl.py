@@ -43,6 +43,14 @@ def show_all_cameras():
     pass
 
 
+def load_css():
+    """
+    Function to load and render a local stylesheet
+    """
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
 def main():
 
     add_selectbox = st.sidebar.selectbox(
