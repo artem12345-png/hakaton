@@ -35,7 +35,7 @@ def show_state():
     return state
 
 
-def connect(ds, state):
+def connect(ds=None, state=None, date=None):
     pass
 
 
@@ -55,8 +55,10 @@ def main():
         if ds and state:
             connect(ds=ds, state=state)
     if add_selectbox == "Мониторинг загруженности городских дорог":
-        show_districts()
-        widgets()
+        ds = show_districts()
+        dt = widgets()
+        if ds and dt:
+            connect(ds=ds, date=dt)
 
     if add_selectbox == "Мониторинг загруженности межрайоных дорог":
         pass
