@@ -52,13 +52,25 @@ def main():
     if add_selectbox == 'Мониторинг оборудования':
         ds = show_districts()
         state = show_state()
-        if ds and state:
+        if ds != 'Выбрать' and state != 'Выбрать':
             connect(ds=ds, state=state)
+        elif ds == 'Выбрать':
+            st.sidebar.title("Выберете район")
+        elif state == 'Выбрать':
+            st.sidebar.write("Выберете состояние")
+        else:
+            st.sidebar.write("Выберете район и состояние")
     if add_selectbox == "Мониторинг загруженности городских дорог":
         ds = show_districts()
         dt = widgets()
-        if ds and dt:
+        if ds != 'Выбрать' and dt != 'Выбрать':
             connect(ds=ds, date=dt)
+        elif ds == 'Выбрать':
+            st.sidebar.title("Выберете район")
+        elif dt == 'Выбрать':
+            st.sidebar.write("Выберете время")
+        else:
+            st.sidebar.write("Выберете район и время")
 
     if add_selectbox == "Мониторинг загруженности межрайоных дорог":
         pass
@@ -66,6 +78,7 @@ def main():
         np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
         columns=['lat', 'lon'])
     st.map(map_data)
+
 
 main()
 
