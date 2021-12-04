@@ -4,25 +4,11 @@ services:
 
   service_frontend:
     container_name: frontend
-    image: stocknews/stock-news:frontend
+    image: artem12345png/hakaton
     command: ["streamlit", "run", "streamlit_app.py", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
     env_file:
       - sample.env
-    ports:
-      - "8080:8501"
-    dns:
-      - 8.8.8.8
-      - 1.0.0.1
 
-  worker_mle:
-    container_name: mle
-    image: stocknews/stock-news:mle
-    command: "python3 ./data_preprocess/upload_data2mongo.py"
-    env_file:
-      - sample.env
-    dns:
-      - 8.8.8.8
-      - 1.0.0.1
 
 networks:
   default:
