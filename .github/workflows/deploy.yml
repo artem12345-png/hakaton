@@ -9,7 +9,6 @@ jobs:
   build_docker_frontend:
     runs-on: ubuntu-latest
     env:
-
       LOGIN: ${{ secrets.DOCKER_LOGIN }}
       NAME: ${{ secrets.DOCKER_NAME }}
     steps:
@@ -31,7 +30,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           script: |
-            cd .github/workflows
+            cd ./hakaton/.github/workflows
             sudo docker-compose down service_frontend
             sudo docker-compose pull
             sudo docker-compose up --build -d service_frontend
