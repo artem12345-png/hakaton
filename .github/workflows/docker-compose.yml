@@ -5,9 +5,12 @@ services:
   service_frontend:
     container_name: frontend
     image: artem12345png/hakaton
-    command: ["streamlit", "run", "sl.py"]
+    command: ["streamlit", "run", "sl.py", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
     env_file:
       - sample.env
+    ports:
+      - "8080:8501"
+
 
 
 networks:
