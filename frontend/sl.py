@@ -44,6 +44,12 @@ def show_all_cameras():
 
 
 def main():
+    [theme]
+    primaryColor = "#c855f16"
+    backgroundColor = "#091c35"
+    secondaryBackgroundColor = "#F0F2F6"
+    textColor = "#ffffff"
+    font = "sans serif"
 
     add_selectbox = st.sidebar.selectbox(
         "Выберете что хотите посмотреть",
