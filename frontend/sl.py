@@ -2,21 +2,25 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import datetime
+from db import all_regions, get_region
+from test_map import show_all_camers
 
 
 def show_districts():
 
     ds = st.sidebar.selectbox('Выберете район',
-                              ("Выбрать",
-                               "Залупинский район",
-                                'Пупинский район'))
-    return ds
+                              [*all_regions()])
+    r = get_region(ds)
+    return r
 
 
 def widgets():
     from datetime import datetime
-    current_time = datetime.now().time()
-    x = st.sidebar.slider('Время', value=current_time)
+
+    time_to = '2021-11-29 18:30:00.000000'
+
+    date_time_obj = datetime.strptime(time_to, '%Y-%m-%d %H:%M:%S.%f')
+    x = st.sidebar.slider('Время', value=date_time_obj.time())
 
     return x
 
@@ -29,58 +33,30 @@ def paint_district_map():
     pass
 
 
-def show_state():
-    state = st.sidebar.selectbox("Выберете состояние датчиков",
-                         ("Выбрать", "Рабочие", "Не корректно", "Не работают"))
-    return state
-
-
-def connect(ds=None, state=None, date=None):
-    pass
-
-
-def show_all_cameras():
-    pass
-
-primaryColor = "#c855f16"
-backgroundColor = "#091c35"
-secondaryBackgroundColor = "#f0f2f6"
-textColor = "#ffffff"
-font = "sans serif"
+def all_cameras(ds):
+    r = show_all_camers(int(ds))
+    st.plotly_chart(r)
 
 
 def main():
 
     add_selectbox = st.sidebar.selectbox(
         "Выберете что хотите посмотреть",
-        ("Выбрать", "Мониторинг оборудования", "Мониторинг загруженности городских дорог",
-         "Мониторинг загруженности межрайоных дорог"))
+        ("Выбрать", "Мониторинг оборудования", "Мониторинг загруженности городских дорог"))
+    if add_selectbox == 'Выбрать':
+        pass
+
     if add_selectbox == 'Мониторинг оборудования':
         ds = show_districts()
-        state = show_state()
-        if ds != 'Выбрать' and state != 'Выбрать':
-            connect(ds=ds, state=state)
-        elif ds == 'Выбрать':
-            st.sidebar.title("Выберете район")
-        elif state == 'Выбрать':
-            st.sidebar.title("Выберете состояние")
+        all_cameras(ds)
 
     if add_selectbox == "Мониторинг загруженности городских дорог":
         ds = show_districts()
         dt = widgets()
-        if ds != 'Выбрать' and dt != 'Выбрать':
-            connect(ds=ds, date=dt)
-        elif ds == 'Выбрать':
-            st.sidebar.title("Выберете район")
-        elif dt == 'Выбрать':
-            st.sidebar.title("Выберете время")
-
-    if add_selectbox == "Мониторинг загруженности межрайоных дорог":
-        pass
-    map_data = pd.DataFrame(
-        np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-        columns=['lat', 'lon'])
-    st.map(map_data)
+        from data import valya
+        time_from = '2021-11-29 18:00:00.000000'
+        time_to = '2021-11-29 18:30:00.000000'
+        st.plotly_chart(valya(time_from, time_to))
 
 
 main()
