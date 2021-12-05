@@ -31,7 +31,7 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.PRIVATEKEY }}
-            source: "./.github/workflows"
+            source: "./.github/workflows/docker-compose.yml"
             target: "~/hakaton"
 
   deploy:
