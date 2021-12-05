@@ -20,7 +20,7 @@ jobs:
       - name: Push image to docker.io
         run: docker push $LOGIN/$NAME:frontend
 
-  create_envs:
+  send:
       runs-on: ubuntu-latest
 
       steps:
@@ -35,7 +35,7 @@ jobs:
             target: "~/hakaton"
 
   deploy:
-    needs: [ build_docker_frontend, create_envs ]
+    needs: [ build_docker_frontend, send ]
     runs-on: ubuntu-latest
 
     steps:
